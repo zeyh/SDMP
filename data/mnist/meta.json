@@ -1,0 +1,276 @@
+{
+ "key": "mnist",
+ "title": "MNIST handwritten digits",
+ "blurb": "5,000 points of the MNIST test split, 784 raw pixel features.",
+ "class_axis": "digit",
+ "default_scheme": "class",
+ "source_run": "mnist/mnist_test_20260902_164341",
+ "created_utc": "2026-09-02T14:43:41.812863+00:00",
+ "n_points": 5000,
+ "n_modes_total": 4999,
+ "n_modes": 128,
+ "n_stages": 10,
+ "n_features": 784,
+ "n_neighbors": 15,
+ "epochs_per_stage": 50,
+ "stages": [
+  {
+   "stage": 1,
+   "k": 2,
+   "bounds": [
+    -13.430254936218262,
+    -9.699544906616211,
+    6.523934364318848,
+    10.254644393920898
+   ],
+   "up_limit": 12.83650016784668
+  },
+  {
+   "stage": 2,
+   "k": 5,
+   "bounds": [
+    -7.817643165588379,
+    -9.070846557617188,
+    9.480481147766113,
+    8.227277755737305
+   ],
+   "up_limit": 8.096733093261719
+  },
+  {
+   "stage": 3,
+   "k": 11,
+   "bounds": [
+    -7.677310943603516,
+    -8.247730255126953,
+    7.60404109954834,
+    7.0336222648620605
+   ],
+   "up_limit": 6.297959804534912
+  },
+  {
+   "stage": 4,
+   "k": 27,
+   "bounds": [
+    -7.88612699508667,
+    -8.200919151306152,
+    7.811896800994873,
+    7.497104644775391
+   ],
+   "up_limit": 5.0669684410095215
+  },
+  {
+   "stage": 5,
+   "k": 65,
+   "bounds": [
+    -7.202227592468262,
+    -6.893354415893555,
+    6.454249382019043,
+    6.76312255859375
+   ],
+   "up_limit": 3.483705997467041
+  },
+  {
+   "stage": 6,
+   "k": 154,
+   "bounds": [
+    -6.806011199951172,
+    -6.828491687774658,
+    6.729829788208008,
+    6.7073493003845215
+   ],
+   "up_limit": 2.4100704193115234
+  },
+  {
+   "stage": 7,
+   "k": 368,
+   "bounds": [
+    -6.911721229553223,
+    -6.591697692871094,
+    6.492239952087402,
+    6.812263488769531
+   ],
+   "up_limit": 2.389139413833618
+  },
+  {
+   "stage": 8,
+   "k": 879,
+   "bounds": [
+    -6.596222400665283,
+    -6.401723861694336,
+    6.233349323272705,
+    6.427847862243652
+   ],
+   "up_limit": 2.3548765182495117
+  },
+  {
+   "stage": 9,
+   "k": 2096,
+   "bounds": [
+    -6.617062568664551,
+    -6.4204206466674805,
+    6.356851577758789,
+    6.553493499755859
+   ],
+   "up_limit": 2.369823455810547
+  },
+  {
+   "stage": 10,
+   "k": 4999,
+   "bounds": [
+    -6.633596897125244,
+    -6.605257034301758,
+    6.40075159072876,
+    6.429091453552246
+   ],
+   "up_limit": 2.5751638412475586
+  }
+ ],
+ "schemes": [
+  {
+   "key": "class",
+   "label": "digit",
+   "kind": "categorical",
+   "value_dtype": "uint16",
+   "classes": [
+    {
+     "name": "0",
+     "count": 460,
+     "color": "#1f77b4",
+     "row_start": 0,
+     "row_stop": 460
+    },
+    {
+     "name": "1",
+     "count": 571,
+     "color": "#ff7f0e",
+     "row_start": 460,
+     "row_stop": 1031
+    },
+    {
+     "name": "2",
+     "count": 530,
+     "color": "#2ca02c",
+     "row_start": 1031,
+     "row_stop": 1561
+    },
+    {
+     "name": "3",
+     "count": 500,
+     "color": "#d62728",
+     "row_start": 1561,
+     "row_stop": 2061
+    },
+    {
+     "name": "4",
+     "count": 500,
+     "color": "#9467bd",
+     "row_start": 2061,
+     "row_stop": 2561
+    },
+    {
+     "name": "5",
+     "count": 456,
+     "color": "#8c564b",
+     "row_start": 2561,
+     "row_stop": 3017
+    },
+    {
+     "name": "6",
+     "count": 462,
+     "color": "#e377c2",
+     "row_start": 3017,
+     "row_stop": 3479
+    },
+    {
+     "name": "7",
+     "count": 512,
+     "color": "#7f7f7f",
+     "row_start": 3479,
+     "row_stop": 3991
+    },
+    {
+     "name": "8",
+     "count": 489,
+     "color": "#bcbd22",
+     "row_start": 3991,
+     "row_stop": 4480
+    },
+    {
+     "name": "9",
+     "count": 520,
+     "color": "#17becf",
+     "row_start": 4480,
+     "row_stop": 5000
+    }
+   ],
+   "order_file": "order_class.bin",
+   "value_file": "values_class.bin"
+  }
+ ],
+ "limits": {
+  "participation": 0.05652759596705437,
+  "up": 12.83650016784668,
+  "coeff": 168.75570678710938,
+  "share": 0.5756804425602186
+ },
+ "files": {
+  "order": {
+   "file": "order_<scheme>.bin",
+   "dtype": "uint32",
+   "shape": [
+    5000
+   ],
+   "note": "heatmap row -> point index, one per colour scheme"
+  },
+  "values": {
+   "file": "values_<scheme>.bin",
+   "dtype": "uint16 (categorical) or float32 (continuous)",
+   "shape": [
+    5000
+   ],
+   "note": "the coloured quantity, in point order"
+  },
+  "eigenvalues": {
+   "file": "eigenvalues.bin",
+   "dtype": "float32",
+   "shape": [
+    4999
+   ]
+  },
+  "absU": {
+   "file": "absU.bin",
+   "dtype": "float32",
+   "shape": [
+    5000,
+    128
+   ],
+   "note": "point order; permute through a scheme's order_*.bin"
+  },
+  "snapshots": {
+   "file": "snapshots.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    5000,
+    2
+   ]
+  },
+  "response": {
+   "file": "response.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    4999
+   ]
+  },
+  "coeff": {
+   "file": "coeff.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    128,
+    2
+   ]
+  }
+ }
+}

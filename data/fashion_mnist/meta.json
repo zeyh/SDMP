@@ -1,0 +1,276 @@
+{
+ "key": "fashion_mnist",
+ "title": "Fashion-MNIST",
+ "blurb": "5,000 points sampled from Fashion-MNIST train+test.",
+ "class_axis": "garment",
+ "default_scheme": "class",
+ "source_run": "fashion_mnist/fashion_mnist_full_20260902_164925",
+ "created_utc": "2026-09-02T14:49:25.264490+00:00",
+ "n_points": 5000,
+ "n_modes_total": 4999,
+ "n_modes": 128,
+ "n_stages": 10,
+ "n_features": 784,
+ "n_neighbors": 15,
+ "epochs_per_stage": 50,
+ "stages": [
+  {
+   "stage": 1,
+   "k": 2,
+   "bounds": [
+    -10.577210426330566,
+    -9.06192398071289,
+    10.279997825622559,
+    11.795284271240234
+   ],
+   "up_limit": 11.72164535522461
+  },
+  {
+   "stage": 2,
+   "k": 5,
+   "bounds": [
+    -8.633462905883789,
+    -8.027613639831543,
+    8.044668197631836,
+    8.650517463684082
+   ],
+   "up_limit": 8.292967796325684
+  },
+  {
+   "stage": 3,
+   "k": 11,
+   "bounds": [
+    -7.338465690612793,
+    -6.599598407745361,
+    7.5277509689331055,
+    8.266618728637695
+   ],
+   "up_limit": 6.148978233337402
+  },
+  {
+   "stage": 4,
+   "k": 27,
+   "bounds": [
+    -7.655087471008301,
+    -7.237157821655273,
+    7.244777679443359,
+    7.662707328796387
+   ],
+   "up_limit": 4.360222339630127
+  },
+  {
+   "stage": 5,
+   "k": 65,
+   "bounds": [
+    -7.162772178649902,
+    -7.195114612579346,
+    7.149670600891113,
+    7.11732816696167
+   ],
+   "up_limit": 3.176805019378662
+  },
+  {
+   "stage": 6,
+   "k": 154,
+   "bounds": [
+    -7.314700603485107,
+    -7.228355407714844,
+    7.4027485847473145,
+    7.489093780517578
+   ],
+   "up_limit": 2.2972850799560547
+  },
+  {
+   "stage": 7,
+   "k": 368,
+   "bounds": [
+    -6.849813461303711,
+    -6.8004255294799805,
+    6.9055376052856445,
+    6.954925537109375
+   ],
+   "up_limit": 2.3619604110717773
+  },
+  {
+   "stage": 8,
+   "k": 879,
+   "bounds": [
+    -6.540533542633057,
+    -6.610761642456055,
+    6.688009738922119,
+    6.617781639099121
+   ],
+   "up_limit": 2.3658320903778076
+  },
+  {
+   "stage": 9,
+   "k": 2096,
+   "bounds": [
+    -6.378545761108398,
+    -6.31505012512207,
+    6.30555534362793,
+    6.369050979614258
+   ],
+   "up_limit": 2.43561053276062
+  },
+  {
+   "stage": 10,
+   "k": 4999,
+   "bounds": [
+    -7.310086250305176,
+    -7.257223129272461,
+    6.765827178955078,
+    6.818690299987793
+   ],
+   "up_limit": 3.218972682952881
+  }
+ ],
+ "schemes": [
+  {
+   "key": "class",
+   "label": "garment",
+   "kind": "categorical",
+   "value_dtype": "uint16",
+   "classes": [
+    {
+     "name": "T-shirt",
+     "count": 457,
+     "color": "#1f77b4",
+     "row_start": 0,
+     "row_stop": 457
+    },
+    {
+     "name": "Trouser",
+     "count": 556,
+     "color": "#ff7f0e",
+     "row_start": 457,
+     "row_stop": 1013
+    },
+    {
+     "name": "Pullover",
+     "count": 504,
+     "color": "#2ca02c",
+     "row_start": 1013,
+     "row_stop": 1517
+    },
+    {
+     "name": "Dress",
+     "count": 501,
+     "color": "#d62728",
+     "row_start": 1517,
+     "row_stop": 2018
+    },
+    {
+     "name": "Coat",
+     "count": 488,
+     "color": "#9467bd",
+     "row_start": 2018,
+     "row_stop": 2506
+    },
+    {
+     "name": "Sandal",
+     "count": 493,
+     "color": "#8c564b",
+     "row_start": 2506,
+     "row_stop": 2999
+    },
+    {
+     "name": "Shirt",
+     "count": 493,
+     "color": "#e377c2",
+     "row_start": 2999,
+     "row_stop": 3492
+    },
+    {
+     "name": "Sneaker",
+     "count": 512,
+     "color": "#7f7f7f",
+     "row_start": 3492,
+     "row_stop": 4004
+    },
+    {
+     "name": "Bag",
+     "count": 490,
+     "color": "#bcbd22",
+     "row_start": 4004,
+     "row_stop": 4494
+    },
+    {
+     "name": "Boot",
+     "count": 506,
+     "color": "#17becf",
+     "row_start": 4494,
+     "row_stop": 5000
+    }
+   ],
+   "order_file": "order_class.bin",
+   "value_file": "values_class.bin"
+  }
+ ],
+ "limits": {
+  "participation": 0.06581281870603561,
+  "up": 11.72164535522461,
+  "coeff": 172.7627716064453,
+  "share": 0.5703042311577046
+ },
+ "files": {
+  "order": {
+   "file": "order_<scheme>.bin",
+   "dtype": "uint32",
+   "shape": [
+    5000
+   ],
+   "note": "heatmap row -> point index, one per colour scheme"
+  },
+  "values": {
+   "file": "values_<scheme>.bin",
+   "dtype": "uint16 (categorical) or float32 (continuous)",
+   "shape": [
+    5000
+   ],
+   "note": "the coloured quantity, in point order"
+  },
+  "eigenvalues": {
+   "file": "eigenvalues.bin",
+   "dtype": "float32",
+   "shape": [
+    4999
+   ]
+  },
+  "absU": {
+   "file": "absU.bin",
+   "dtype": "float32",
+   "shape": [
+    5000,
+    128
+   ],
+   "note": "point order; permute through a scheme's order_*.bin"
+  },
+  "snapshots": {
+   "file": "snapshots.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    5000,
+    2
+   ]
+  },
+  "response": {
+   "file": "response.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    4999
+   ]
+  },
+  "coeff": {
+   "file": "coeff.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    128,
+    2
+   ]
+  }
+ }
+}

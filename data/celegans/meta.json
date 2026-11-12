@@ -1,0 +1,428 @@
+{
+ "key": "celegans",
+ "title": "C. elegans (preprocessed)",
+ "blurb": "5,000 cells of the C. elegans embryo atlas, 100 principal components.",
+ "class_axis": "cell type",
+ "default_scheme": "celltype",
+ "source_run": "celegans_processed/cel_processed_20260904_001635",
+ "created_utc": "2026-09-03T22:16:35.487475+00:00",
+ "n_points": 5000,
+ "n_modes_total": 4999,
+ "n_modes": 128,
+ "n_stages": 10,
+ "n_features": 100,
+ "n_neighbors": 15,
+ "epochs_per_stage": 50,
+ "stages": [
+  {
+   "stage": 1,
+   "k": 2,
+   "bounds": [
+    -13.958419799804688,
+    -20.589908599853516,
+    40.66928482055664,
+    34.03779602050781
+   ],
+   "up_limit": 30.344554901123047
+  },
+  {
+   "stage": 2,
+   "k": 5,
+   "bounds": [
+    -5.828146934509277,
+    -15.483806610107422,
+    18.785240173339844,
+    9.129581451416016
+   ],
+   "up_limit": 9.62154483795166
+  },
+  {
+   "stage": 3,
+   "k": 11,
+   "bounds": [
+    -6.236428260803223,
+    -10.32143783569336,
+    10.676156044006348,
+    6.591146469116211
+   ],
+   "up_limit": 5.782341003417969
+  },
+  {
+   "stage": 4,
+   "k": 27,
+   "bounds": [
+    -7.3069963455200195,
+    -7.265567779541016,
+    7.679145812988281,
+    7.720574378967285
+   ],
+   "up_limit": 3.4151053428649902
+  },
+  {
+   "stage": 5,
+   "k": 65,
+   "bounds": [
+    -6.757999897003174,
+    -7.391216278076172,
+    7.165783405303955,
+    6.532567024230957
+   ],
+   "up_limit": 2.4147140979766846
+  },
+  {
+   "stage": 6,
+   "k": 154,
+   "bounds": [
+    -6.48372745513916,
+    -6.7998199462890625,
+    6.55410099029541,
+    6.238008499145508
+   ],
+   "up_limit": 1.6853874921798706
+  },
+  {
+   "stage": 7,
+   "k": 368,
+   "bounds": [
+    -5.854735851287842,
+    -6.466492652893066,
+    6.834232807159424,
+    6.222476005554199
+   ],
+   "up_limit": 1.6515756845474243
+  },
+  {
+   "stage": 8,
+   "k": 879,
+   "bounds": [
+    -5.512076377868652,
+    -6.1853790283203125,
+    6.620094299316406,
+    5.946791648864746
+   ],
+   "up_limit": 1.5608662366867065
+  },
+  {
+   "stage": 9,
+   "k": 2096,
+   "bounds": [
+    -5.0405988693237305,
+    -5.748680114746094,
+    6.27835750579834,
+    5.570276260375977
+   ],
+   "up_limit": 1.5591179132461548
+  },
+  {
+   "stage": 10,
+   "k": 4999,
+   "bounds": [
+    -6.33955192565918,
+    -7.240486145019531,
+    7.571784973144531,
+    6.67085075378418
+   ],
+   "up_limit": 2.2686767578125
+  }
+ ],
+ "schemes": [
+  {
+   "key": "celltype",
+   "label": "cell type",
+   "kind": "categorical",
+   "value_dtype": "uint16",
+   "classes": [
+    {
+     "name": "ADL",
+     "count": 367,
+     "color": "#1f77b4",
+     "row_start": 0,
+     "row_stop": 367
+    },
+    {
+     "name": "AFD",
+     "count": 270,
+     "color": "#ff7f0e",
+     "row_start": 367,
+     "row_stop": 637
+    },
+    {
+     "name": "ASH",
+     "count": 252,
+     "color": "#2ca02c",
+     "row_start": 637,
+     "row_stop": 889
+    },
+    {
+     "name": "ASJ",
+     "count": 243,
+     "color": "#d62728",
+     "row_start": 889,
+     "row_stop": 1132
+    },
+    {
+     "name": "AWC",
+     "count": 239,
+     "color": "#9467bd",
+     "row_start": 1132,
+     "row_stop": 1371
+    },
+    {
+     "name": "ASE",
+     "count": 183,
+     "color": "#8c564b",
+     "row_start": 1371,
+     "row_stop": 1554
+    },
+    {
+     "name": "ASK",
+     "count": 160,
+     "color": "#e377c2",
+     "row_start": 1554,
+     "row_stop": 1714
+    },
+    {
+     "name": "ASI par.",
+     "count": 151,
+     "color": "#7f7f7f",
+     "row_start": 1714,
+     "row_stop": 1865
+    },
+    {
+     "name": "AWA",
+     "count": 149,
+     "color": "#bcbd22",
+     "row_start": 1865,
+     "row_stop": 2014
+    },
+    {
+     "name": "ADL par.",
+     "count": 148,
+     "color": "#17becf",
+     "row_start": 2014,
+     "row_stop": 2162
+    },
+    {
+     "name": "ADF",
+     "count": 146,
+     "color": "#393b79",
+     "row_start": 2162,
+     "row_stop": 2308
+    },
+    {
+     "name": "ASI",
+     "count": 141,
+     "color": "#637939",
+     "row_start": 2308,
+     "row_stop": 2449
+    },
+    {
+     "name": "Nb ASG/AWA",
+     "count": 140,
+     "color": "#8c6d31",
+     "row_start": 2449,
+     "row_stop": 2589
+    },
+    {
+     "name": "ASK par.",
+     "count": 137,
+     "color": "#843c39",
+     "row_start": 2589,
+     "row_stop": 2726
+    },
+    {
+     "name": "AWB",
+     "count": 137,
+     "color": "#7b4173",
+     "row_start": 2726,
+     "row_stop": 2863
+    },
+    {
+     "name": "Nb AFD/RMD",
+     "count": 132,
+     "color": "#3182bd",
+     "row_start": 2863,
+     "row_stop": 2995
+    },
+    {
+     "name": "Nb ADF/AWB",
+     "count": 129,
+     "color": "#31a354",
+     "row_start": 2995,
+     "row_stop": 3124
+    },
+    {
+     "name": "ASE par.",
+     "count": 123,
+     "color": "#756bb1",
+     "row_start": 3124,
+     "row_stop": 3247
+    },
+    {
+     "name": "ASG",
+     "count": 109,
+     "color": "#636363",
+     "row_start": 3247,
+     "row_stop": 3356
+    },
+    {
+     "name": "Nb ASE/ASJ/AUA",
+     "count": 100,
+     "color": "#e6550d",
+     "row_start": 3356,
+     "row_stop": 3456
+    },
+    {
+     "name": "Nb ASJ/AUA",
+     "count": 99,
+     "color": "#969696",
+     "row_start": 3456,
+     "row_stop": 3555
+    },
+    {
+     "name": "ADF/AWB",
+     "count": 91,
+     "color": "#6baed6",
+     "row_start": 3555,
+     "row_stop": 3646
+    },
+    {
+     "name": "AUA",
+     "count": 80,
+     "color": "#74c476",
+     "row_start": 3646,
+     "row_stop": 3726
+    },
+    {
+     "name": "ASG/AWA",
+     "count": 79,
+     "color": "#fd8d3c",
+     "row_start": 3726,
+     "row_stop": 3805
+    },
+    {
+     "name": "ASER",
+     "count": 37,
+     "color": "#fdd0a2",
+     "row_start": 3805,
+     "row_stop": 3842
+    },
+    {
+     "name": "ASEL",
+     "count": 35,
+     "color": "#9e9ac8",
+     "row_start": 3842,
+     "row_stop": 3877
+    },
+    {
+     "name": "AWC/ON",
+     "count": 3,
+     "color": "#fdae6b",
+     "row_start": 3877,
+     "row_stop": 3880
+    },
+    {
+     "name": "unannotated",
+     "count": 1120,
+     "color": "#c7ccd4",
+     "row_start": 3880,
+     "row_stop": 5000
+    }
+   ],
+   "order_file": "order_celltype.bin",
+   "value_file": "values_celltype.bin"
+  },
+  {
+   "key": "time",
+   "label": "embryo time",
+   "kind": "continuous",
+   "value_dtype": "float32",
+   "unit": "min",
+   "note": "minutes after fertilization, from celegans_metadata.csv",
+   "vmin": 160.0,
+   "vmax": 780.0,
+   "n_missing": 0,
+   "stops": [
+    "#440154",
+    "#482878",
+    "#3e4989",
+    "#31688e",
+    "#26828e",
+    "#1f9e89",
+    "#35b779",
+    "#6ece58",
+    "#b5de2b",
+    "#fde725"
+   ],
+   "missing_color": "#c7ccd4",
+   "order_file": "order_time.bin",
+   "value_file": "values_time.bin"
+  }
+ ],
+ "limits": {
+  "participation": 0.07062456011772156,
+  "up": 30.344554901123047,
+  "coeff": 109.25983428955078,
+  "share": 0.5168551990545301
+ },
+ "files": {
+  "order": {
+   "file": "order_<scheme>.bin",
+   "dtype": "uint32",
+   "shape": [
+    5000
+   ],
+   "note": "heatmap row -> point index, one per colour scheme"
+  },
+  "values": {
+   "file": "values_<scheme>.bin",
+   "dtype": "uint16 (categorical) or float32 (continuous)",
+   "shape": [
+    5000
+   ],
+   "note": "the coloured quantity, in point order"
+  },
+  "eigenvalues": {
+   "file": "eigenvalues.bin",
+   "dtype": "float32",
+   "shape": [
+    4999
+   ]
+  },
+  "absU": {
+   "file": "absU.bin",
+   "dtype": "float32",
+   "shape": [
+    5000,
+    128
+   ],
+   "note": "point order; permute through a scheme's order_*.bin"
+  },
+  "snapshots": {
+   "file": "snapshots.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    5000,
+    2
+   ]
+  },
+  "response": {
+   "file": "response.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    4999
+   ]
+  },
+  "coeff": {
+   "file": "coeff.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    128,
+    2
+   ]
+  }
+ }
+}

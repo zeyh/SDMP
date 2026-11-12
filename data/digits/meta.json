@@ -1,0 +1,276 @@
+{
+ "key": "digits",
+ "title": "MNIST digits (8x8)",
+ "blurb": "The 1,797-point scikit-learn digits set, 64 features.",
+ "class_axis": "digit",
+ "default_scheme": "class",
+ "source_run": "digits/digits_20260902_174706",
+ "created_utc": "2026-09-02T15:47:06.520894+00:00",
+ "n_points": 1797,
+ "n_modes_total": 1796,
+ "n_modes": 128,
+ "n_stages": 10,
+ "n_features": 64,
+ "n_neighbors": 15,
+ "epochs_per_stage": 50,
+ "stages": [
+  {
+   "stage": 1,
+   "k": 2,
+   "bounds": [
+    -20.658187866210938,
+    -24.257652282714844,
+    40.53176498413086,
+    36.93230056762695
+   ],
+   "up_limit": 36.75373840332031
+  },
+  {
+   "stage": 2,
+   "k": 4,
+   "bounds": [
+    -11.517822265625,
+    -25.3129940032959,
+    32.23750305175781,
+    18.442331314086914
+   ],
+   "up_limit": 12.846413612365723
+  },
+  {
+   "stage": 3,
+   "k": 9,
+   "bounds": [
+    -7.579013824462891,
+    -9.232305526733398,
+    9.464929580688477,
+    7.811638355255127
+   ],
+   "up_limit": 7.50105619430542
+  },
+  {
+   "stage": 4,
+   "k": 19,
+   "bounds": [
+    -7.132356643676758,
+    -7.805553436279297,
+    7.873085975646973,
+    7.199889183044434
+   ],
+   "up_limit": 6.079511642456055
+  },
+  {
+   "stage": 5,
+   "k": 41,
+   "bounds": [
+    -7.306699752807617,
+    -8.191423416137695,
+    8.2177095413208,
+    7.332985877990723
+   ],
+   "up_limit": 4.884640693664551
+  },
+  {
+   "stage": 6,
+   "k": 87,
+   "bounds": [
+    -7.137245178222656,
+    -8.021590232849121,
+    7.869629859924316,
+    6.985284805297852
+   ],
+   "up_limit": 3.046828508377075
+  },
+  {
+   "stage": 7,
+   "k": 186,
+   "bounds": [
+    -7.290884494781494,
+    -7.660263538360596,
+    7.316015720367432,
+    6.94663667678833
+   ],
+   "up_limit": 2.2579505443573
+  },
+  {
+   "stage": 8,
+   "k": 396,
+   "bounds": [
+    -7.180206775665283,
+    -7.694676399230957,
+    7.317197322845459,
+    6.802727699279785
+   ],
+   "up_limit": 2.2630960941314697
+  },
+  {
+   "stage": 9,
+   "k": 844,
+   "bounds": [
+    -7.185734272003174,
+    -7.847410202026367,
+    7.563721179962158,
+    6.902045249938965
+   ],
+   "up_limit": 2.3211464881896973
+  },
+  {
+   "stage": 10,
+   "k": 1796,
+   "bounds": [
+    -7.506654739379883,
+    -8.048429489135742,
+    7.751384735107422,
+    7.2096099853515625
+   ],
+   "up_limit": 2.582033634185791
+  }
+ ],
+ "schemes": [
+  {
+   "key": "class",
+   "label": "digit",
+   "kind": "categorical",
+   "value_dtype": "uint16",
+   "classes": [
+    {
+     "name": "0",
+     "count": 178,
+     "color": "#1f77b4",
+     "row_start": 0,
+     "row_stop": 178
+    },
+    {
+     "name": "1",
+     "count": 182,
+     "color": "#ff7f0e",
+     "row_start": 178,
+     "row_stop": 360
+    },
+    {
+     "name": "2",
+     "count": 177,
+     "color": "#2ca02c",
+     "row_start": 360,
+     "row_stop": 537
+    },
+    {
+     "name": "3",
+     "count": 183,
+     "color": "#d62728",
+     "row_start": 537,
+     "row_stop": 720
+    },
+    {
+     "name": "4",
+     "count": 181,
+     "color": "#9467bd",
+     "row_start": 720,
+     "row_stop": 901
+    },
+    {
+     "name": "5",
+     "count": 182,
+     "color": "#8c564b",
+     "row_start": 901,
+     "row_stop": 1083
+    },
+    {
+     "name": "6",
+     "count": 181,
+     "color": "#e377c2",
+     "row_start": 1083,
+     "row_stop": 1264
+    },
+    {
+     "name": "7",
+     "count": 179,
+     "color": "#7f7f7f",
+     "row_start": 1264,
+     "row_stop": 1443
+    },
+    {
+     "name": "8",
+     "count": 174,
+     "color": "#bcbd22",
+     "row_start": 1443,
+     "row_stop": 1617
+    },
+    {
+     "name": "9",
+     "count": 180,
+     "color": "#17becf",
+     "row_start": 1617,
+     "row_stop": 1797
+    }
+   ],
+   "order_file": "order_class.bin",
+   "value_file": "values_class.bin"
+  }
+ ],
+ "limits": {
+  "participation": 0.1184244230389595,
+  "up": 36.75373840332031,
+  "coeff": 111.47334289550781,
+  "share": 0.6043542170453482
+ },
+ "files": {
+  "order": {
+   "file": "order_<scheme>.bin",
+   "dtype": "uint32",
+   "shape": [
+    1797
+   ],
+   "note": "heatmap row -> point index, one per colour scheme"
+  },
+  "values": {
+   "file": "values_<scheme>.bin",
+   "dtype": "uint16 (categorical) or float32 (continuous)",
+   "shape": [
+    1797
+   ],
+   "note": "the coloured quantity, in point order"
+  },
+  "eigenvalues": {
+   "file": "eigenvalues.bin",
+   "dtype": "float32",
+   "shape": [
+    1796
+   ]
+  },
+  "absU": {
+   "file": "absU.bin",
+   "dtype": "float32",
+   "shape": [
+    1797,
+    128
+   ],
+   "note": "point order; permute through a scheme's order_*.bin"
+  },
+  "snapshots": {
+   "file": "snapshots.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    1797,
+    2
+   ]
+  },
+  "response": {
+   "file": "response.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    1796
+   ]
+  },
+  "coeff": {
+   "file": "coeff.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    128,
+    2
+   ]
+  }
+ }
+}

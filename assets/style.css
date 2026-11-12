@@ -1,0 +1,337 @@
+/* Spectral progressive viewer -- static styling, no build step.
+   Light only: the BrBG heatmaps and the paper figures are drawn on white, and
+   a dark canvas would change what a colour means. */
+:root {
+  color-scheme: light;
+  --panel: #ffffff;
+  --border: #ccd6d3;
+  --border-strong: #aab6b3;
+  --text: #1e302d;
+  --subtext: #4d5c58;
+  --faint: #76837f;
+  --accent: #0b665b;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  /* Flat panel chrome: hairline rules and square corners, like a vis tool. */
+  --radius: 0;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--panel);
+  color: var(--text);
+  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); }
+
+header.top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.spacer { flex: 1 1 auto; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.field > label {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--faint);
+}
+
+select, button, input[type="number"] {
+  font: inherit;
+  font-size: 12px;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  padding: 3px 7px;
+}
+
+select:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button { cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button[aria-pressed="true"], button.on {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: underline;
+}
+button:disabled { opacity: 0.45; cursor: default; }
+
+/* --- player ------------------------------------------------------------- */
+.player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 6px 9px;
+  margin-bottom: 9px;
+}
+
+.player .play {
+  width: 30px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+}
+
+.player .step { padding: 3px 7px; font-size: 11px; }
+
+.track { flex: 1 1 320px; min-width: 240px; }
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.stage-readout {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--subtext);
+  white-space: nowrap;
+  min-width: 20ch;
+}
+
+.stage-readout b { color: var(--text); font-weight: 600; }
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--faint);
+  margin-top: -2px;
+  user-select: none;
+}
+
+.ticks span { cursor: pointer; }
+.ticks span:hover { color: var(--accent); }
+.ticks span.cur { color: var(--text); font-weight: 700; }
+
+.toggles { display: flex; gap: 6px; align-items: center; }
+.toggles .sep { width: 1px; height: 18px; background: var(--border); }
+
+/* --- layout ------------------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(340px, 0.82fr) minmax(420px, 1.18fr);
+  gap: 9px;
+  align-items: start;
+}
+
+@media (max-width: 1040px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 0 9px 9px;
+  min-width: 0;
+}
+
+/* The title is a strip across the top of the box, not a line of prose in it. */
+.card > h3 {
+  margin: 0 -9px 8px;
+  padding: 4px 9px;
+  border-bottom: 1px solid var(--border);
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.card > h3 .note {
+  font-weight: 400;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--faint);
+}
+
+.canvas-host {
+  position: relative;
+  width: 100%;
+}
+
+.canvas-host canvas {
+  display: block;
+  max-width: 100%;
+  cursor: crosshair;
+}
+
+/* --- tabs --------------------------------------------------------------- */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin: 0 -9px 7px;
+  padding: 0 5px;
+}
+
+.tabs button {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 4px 9px;
+  font-size: 11.5px;
+  color: var(--subtext);
+  box-shadow: inset 0 -2px 0 transparent;
+}
+
+.tabs button:hover { background: transparent; color: var(--text); }
+
+.tabs button[aria-selected="true"] {
+  color: var(--accent);
+  font-weight: 650;
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.tab-tools {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.tab-tools .mini { padding: 2px 6px; font-size: 11px; }
+.tab-tools .modes { display: flex; align-items: center; gap: 5px; }
+.tab-tools .modes input[type="range"] { width: 110px; }
+.tab-tools code { font-family: var(--mono); font-size: 11px; color: var(--text); }
+
+/* --- legend ------------------------------------------------------------- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 9px;
+  margin-top: 7px;
+  font-size: 11px;
+  max-height: 78px;
+  overflow-y: auto;
+}
+
+.legend .item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 1px 3px;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.legend .item:hover, .legend .item.solo { text-decoration: underline; }
+.legend .item.dim { opacity: 0.35; }
+
+.legend .swatch {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+}
+
+.legend .count { color: var(--faint); font-family: var(--mono); font-size: 10px; }
+
+/* A continuous scheme has no entries to list, so the legend becomes the scale. */
+.legend.ramp { display: block; max-height: none; overflow: visible; }
+
+.rampwrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.rampwrap .end {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--subtext);
+  white-space: nowrap;
+}
+
+.rampbar {
+  flex: 1 1 auto;
+  height: 10px;
+  min-width: 80px;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+}
+
+/* --- point inspector ---------------------------------------------------- */
+.inspector { margin-top: 9px; }
+
+.inspector .head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+  font-size: 11.5px;
+}
+
+.inspector .head .who { font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.inspector .head .who .swatch { width: 10px; height: 10px; border-radius: 2px; }
+.inspector .head .meta { color: var(--subtext); font-family: var(--mono); font-size: 11.5px; }
+.inspector .head .pinned {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+#point-empty {
+  height: 58px;
+  color: var(--subtext);
+  font-size: 12px;
+}
+
+/* --- readout tooltip ---------------------------------------------------- */
+.readout {
+  position: absolute;
+  pointer-events: none;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.45;
+  padding: 4px 7px;
+  border-radius: 5px;
+  white-space: pre;
+  opacity: 0;
+  transition: opacity 90ms linear;
+  z-index: 5;
+  max-width: 260px;
+}
+
+.readout.show { opacity: 1; }
+
+.status {
+  padding: 30px 0;
+  text-align: center;
+  color: var(--faint);
+  font-size: 13px;
+}
+
+.status.error { color: #b42318; }

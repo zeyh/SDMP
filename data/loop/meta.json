@@ -1,0 +1,262 @@
+{
+ "key": "loop",
+ "title": "Multiscale loop",
+ "blurb": "A synthetic loop whose detail lives at several scales, in 8 sectors.",
+ "class_axis": "sector",
+ "default_scheme": "class",
+ "source_run": "spectral_loop/spectral_loop_20260904_003423",
+ "created_utc": "2026-09-03T22:34:23.918554+00:00",
+ "n_points": 5000,
+ "n_modes_total": 4999,
+ "n_modes": 128,
+ "n_stages": 10,
+ "n_features": 30,
+ "n_neighbors": 15,
+ "epochs_per_stage": 50,
+ "stages": [
+  {
+   "stage": 1,
+   "k": 2,
+   "bounds": [
+    -6.5157670974731445,
+    -6.247780799865723,
+    6.4535675048828125,
+    6.721553802490234
+   ],
+   "up_limit": 6.0826096534729
+  },
+  {
+   "stage": 2,
+   "k": 5,
+   "bounds": [
+    -6.350811004638672,
+    -6.465461730957031,
+    6.642246246337891,
+    6.527595520019531
+   ],
+   "up_limit": 5.3929009437561035
+  },
+  {
+   "stage": 3,
+   "k": 11,
+   "bounds": [
+    -6.470293998718262,
+    -7.129271507263184,
+    7.066246032714844,
+    6.407268524169922
+   ],
+   "up_limit": 4.038177490234375
+  },
+  {
+   "stage": 4,
+   "k": 27,
+   "bounds": [
+    -7.334287643432617,
+    -7.062472820281982,
+    6.924443244934082,
+    7.196258068084717
+   ],
+   "up_limit": 3.3905181884765625
+  },
+  {
+   "stage": 5,
+   "k": 65,
+   "bounds": [
+    -6.852502346038818,
+    -6.975356101989746,
+    7.139598369598389,
+    7.016744613647461
+   ],
+   "up_limit": 2.8134682178497314
+  },
+  {
+   "stage": 6,
+   "k": 154,
+   "bounds": [
+    -6.624105453491211,
+    -6.870339393615723,
+    6.764303207397461,
+    6.518069267272949
+   ],
+   "up_limit": 2.37739896774292
+  },
+  {
+   "stage": 7,
+   "k": 368,
+   "bounds": [
+    -6.490900993347168,
+    -6.776115417480469,
+    6.574402809143066,
+    6.289188385009766
+   ],
+   "up_limit": 2.345515489578247
+  },
+  {
+   "stage": 8,
+   "k": 879,
+   "bounds": [
+    -6.147608280181885,
+    -6.367823600769043,
+    6.142611980438232,
+    5.922396659851074
+   ],
+   "up_limit": 2.299089193344116
+  },
+  {
+   "stage": 9,
+   "k": 2096,
+   "bounds": [
+    -5.62110710144043,
+    -5.882565498352051,
+    5.741324424743652,
+    5.479866027832031
+   ],
+   "up_limit": 2.3549509048461914
+  },
+  {
+   "stage": 10,
+   "k": 4999,
+   "bounds": [
+    -6.890376567840576,
+    -7.3185272216796875,
+    7.154731273651123,
+    6.726580619812012
+   ],
+   "up_limit": 3.4786624908447266
+  }
+ ],
+ "schemes": [
+  {
+   "key": "class",
+   "label": "sector",
+   "kind": "categorical",
+   "value_dtype": "uint16",
+   "classes": [
+    {
+     "name": "0",
+     "count": 655,
+     "color": "#1f77b4",
+     "row_start": 0,
+     "row_stop": 655
+    },
+    {
+     "name": "1",
+     "count": 628,
+     "color": "#ff7f0e",
+     "row_start": 655,
+     "row_stop": 1283
+    },
+    {
+     "name": "2",
+     "count": 619,
+     "color": "#2ca02c",
+     "row_start": 1283,
+     "row_stop": 1902
+    },
+    {
+     "name": "3",
+     "count": 598,
+     "color": "#d62728",
+     "row_start": 1902,
+     "row_stop": 2500
+    },
+    {
+     "name": "4",
+     "count": 633,
+     "color": "#9467bd",
+     "row_start": 2500,
+     "row_stop": 3133
+    },
+    {
+     "name": "5",
+     "count": 630,
+     "color": "#8c564b",
+     "row_start": 3133,
+     "row_stop": 3763
+    },
+    {
+     "name": "6",
+     "count": 629,
+     "color": "#e377c2",
+     "row_start": 3763,
+     "row_stop": 4392
+    },
+    {
+     "name": "7",
+     "count": 608,
+     "color": "#7f7f7f",
+     "row_start": 4392,
+     "row_stop": 5000
+    }
+   ],
+   "order_file": "order_class.bin",
+   "value_file": "values_class.bin"
+  }
+ ],
+ "limits": {
+  "participation": 0.06460383534431458,
+  "up": 6.0826096534729,
+  "coeff": 162.95285034179688,
+  "share": 0.5268519255298
+ },
+ "files": {
+  "order": {
+   "file": "order_<scheme>.bin",
+   "dtype": "uint32",
+   "shape": [
+    5000
+   ],
+   "note": "heatmap row -> point index, one per colour scheme"
+  },
+  "values": {
+   "file": "values_<scheme>.bin",
+   "dtype": "uint16 (categorical) or float32 (continuous)",
+   "shape": [
+    5000
+   ],
+   "note": "the coloured quantity, in point order"
+  },
+  "eigenvalues": {
+   "file": "eigenvalues.bin",
+   "dtype": "float32",
+   "shape": [
+    4999
+   ]
+  },
+  "absU": {
+   "file": "absU.bin",
+   "dtype": "float32",
+   "shape": [
+    5000,
+    128
+   ],
+   "note": "point order; permute through a scheme's order_*.bin"
+  },
+  "snapshots": {
+   "file": "snapshots.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    5000,
+    2
+   ]
+  },
+  "response": {
+   "file": "response.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    4999
+   ]
+  },
+  "coeff": {
+   "file": "coeff.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    128,
+    2
+   ]
+  }
+ }
+}

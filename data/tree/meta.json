@@ -1,0 +1,556 @@
+{
+ "key": "tree",
+ "title": "Brownian tree",
+ "blurb": "A synthetic branching structure with 50 labelled branches.",
+ "class_axis": "branch",
+ "default_scheme": "class",
+ "source_run": "brownian_tree/tree_20260904_002555",
+ "created_utc": "2026-09-03T22:25:56.057072+00:00",
+ "n_points": 5000,
+ "n_modes_total": 4999,
+ "n_modes": 128,
+ "n_stages": 10,
+ "n_features": 50,
+ "n_neighbors": 15,
+ "epochs_per_stage": 50,
+ "stages": [
+  {
+   "stage": 1,
+   "k": 2,
+   "bounds": [
+    -10.481922149658203,
+    -13.074527740478516,
+    12.807062149047852,
+    10.214456558227539
+   ],
+   "up_limit": 16.186758041381836
+  },
+  {
+   "stage": 2,
+   "k": 5,
+   "bounds": [
+    -13.963123321533203,
+    -15.662589073181152,
+    19.628684997558594,
+    17.929218292236328
+   ],
+   "up_limit": 11.699217796325684
+  },
+  {
+   "stage": 3,
+   "k": 11,
+   "bounds": [
+    -14.90350341796875,
+    -11.910712242126465,
+    12.964469909667969,
+    15.957261085510254
+   ],
+   "up_limit": 7.399592876434326
+  },
+  {
+   "stage": 4,
+   "k": 27,
+   "bounds": [
+    -10.633957862854004,
+    -12.835306167602539,
+    11.60852336883545,
+    9.407175064086914
+   ],
+   "up_limit": 4.284243106842041
+  },
+  {
+   "stage": 5,
+   "k": 65,
+   "bounds": [
+    -7.885802268981934,
+    -7.408085823059082,
+    7.736110687255859,
+    8.213827133178711
+   ],
+   "up_limit": 2.7366514205932617
+  },
+  {
+   "stage": 6,
+   "k": 154,
+   "bounds": [
+    -7.193749904632568,
+    -6.950619220733643,
+    7.116342067718506,
+    7.359472751617432
+   ],
+   "up_limit": 2.0584123134613037
+  },
+  {
+   "stage": 7,
+   "k": 368,
+   "bounds": [
+    -6.651017189025879,
+    -6.51326847076416,
+    6.820245742797852,
+    6.95799446105957
+   ],
+   "up_limit": 1.995582103729248
+  },
+  {
+   "stage": 8,
+   "k": 879,
+   "bounds": [
+    -6.482810974121094,
+    -6.152121543884277,
+    6.390878677368164,
+    6.7215681076049805
+   ],
+   "up_limit": 1.9732308387756348
+  },
+  {
+   "stage": 9,
+   "k": 2096,
+   "bounds": [
+    -6.155559539794922,
+    -5.986764430999756,
+    6.20588493347168,
+    6.374680042266846
+   ],
+   "up_limit": 1.9566844701766968
+  },
+  {
+   "stage": 10,
+   "k": 4999,
+   "bounds": [
+    -7.158454895019531,
+    -7.13995885848999,
+    7.395867347717285,
+    7.414363384246826
+   ],
+   "up_limit": 2.5513319969177246
+  }
+ ],
+ "schemes": [
+  {
+   "key": "class",
+   "label": "branch",
+   "kind": "categorical",
+   "value_dtype": "uint16",
+   "classes": [
+    {
+     "name": "0",
+     "count": 100,
+     "color": "#1f77b4",
+     "row_start": 0,
+     "row_stop": 100
+    },
+    {
+     "name": "1",
+     "count": 100,
+     "color": "#ff7f0e",
+     "row_start": 100,
+     "row_stop": 200
+    },
+    {
+     "name": "2",
+     "count": 100,
+     "color": "#2ca02c",
+     "row_start": 200,
+     "row_stop": 300
+    },
+    {
+     "name": "3",
+     "count": 100,
+     "color": "#d62728",
+     "row_start": 300,
+     "row_stop": 400
+    },
+    {
+     "name": "4",
+     "count": 100,
+     "color": "#9467bd",
+     "row_start": 400,
+     "row_stop": 500
+    },
+    {
+     "name": "5",
+     "count": 100,
+     "color": "#8c564b",
+     "row_start": 500,
+     "row_stop": 600
+    },
+    {
+     "name": "6",
+     "count": 100,
+     "color": "#e377c2",
+     "row_start": 600,
+     "row_stop": 700
+    },
+    {
+     "name": "7",
+     "count": 100,
+     "color": "#7f7f7f",
+     "row_start": 700,
+     "row_stop": 800
+    },
+    {
+     "name": "8",
+     "count": 100,
+     "color": "#bcbd22",
+     "row_start": 800,
+     "row_stop": 900
+    },
+    {
+     "name": "9",
+     "count": 100,
+     "color": "#17becf",
+     "row_start": 900,
+     "row_stop": 1000
+    },
+    {
+     "name": "10",
+     "count": 100,
+     "color": "#393b79",
+     "row_start": 1000,
+     "row_stop": 1100
+    },
+    {
+     "name": "11",
+     "count": 100,
+     "color": "#637939",
+     "row_start": 1100,
+     "row_stop": 1200
+    },
+    {
+     "name": "12",
+     "count": 100,
+     "color": "#8c6d31",
+     "row_start": 1200,
+     "row_stop": 1300
+    },
+    {
+     "name": "13",
+     "count": 100,
+     "color": "#843c39",
+     "row_start": 1300,
+     "row_stop": 1400
+    },
+    {
+     "name": "14",
+     "count": 100,
+     "color": "#7b4173",
+     "row_start": 1400,
+     "row_stop": 1500
+    },
+    {
+     "name": "15",
+     "count": 100,
+     "color": "#3182bd",
+     "row_start": 1500,
+     "row_stop": 1600
+    },
+    {
+     "name": "16",
+     "count": 100,
+     "color": "#31a354",
+     "row_start": 1600,
+     "row_stop": 1700
+    },
+    {
+     "name": "17",
+     "count": 100,
+     "color": "#756bb1",
+     "row_start": 1700,
+     "row_stop": 1800
+    },
+    {
+     "name": "18",
+     "count": 100,
+     "color": "#636363",
+     "row_start": 1800,
+     "row_stop": 1900
+    },
+    {
+     "name": "19",
+     "count": 100,
+     "color": "#e6550d",
+     "row_start": 1900,
+     "row_stop": 2000
+    },
+    {
+     "name": "20",
+     "count": 100,
+     "color": "#969696",
+     "row_start": 2000,
+     "row_stop": 2100
+    },
+    {
+     "name": "21",
+     "count": 100,
+     "color": "#6baed6",
+     "row_start": 2100,
+     "row_stop": 2200
+    },
+    {
+     "name": "22",
+     "count": 100,
+     "color": "#74c476",
+     "row_start": 2200,
+     "row_stop": 2300
+    },
+    {
+     "name": "23",
+     "count": 100,
+     "color": "#fd8d3c",
+     "row_start": 2300,
+     "row_stop": 2400
+    },
+    {
+     "name": "24",
+     "count": 100,
+     "color": "#fdd0a2",
+     "row_start": 2400,
+     "row_stop": 2500
+    },
+    {
+     "name": "25",
+     "count": 100,
+     "color": "#9e9ac8",
+     "row_start": 2500,
+     "row_stop": 2600
+    },
+    {
+     "name": "26",
+     "count": 100,
+     "color": "#fdae6b",
+     "row_start": 2600,
+     "row_stop": 2700
+    },
+    {
+     "name": "27",
+     "count": 100,
+     "color": "#c7e9c0",
+     "row_start": 2700,
+     "row_stop": 2800
+    },
+    {
+     "name": "28",
+     "count": 100,
+     "color": "#95b734",
+     "row_start": 2800,
+     "row_stop": 2900
+    },
+    {
+     "name": "29",
+     "count": 100,
+     "color": "#29c236",
+     "row_start": 2900,
+     "row_stop": 3000
+    },
+    {
+     "name": "30",
+     "count": 100,
+     "color": "#1eccbb",
+     "row_start": 3000,
+     "row_stop": 3100
+    },
+    {
+     "name": "31",
+     "count": 100,
+     "color": "#3458b7",
+     "row_start": 3100,
+     "row_stop": 3200
+    },
+    {
+     "name": "32",
+     "count": 100,
+     "color": "#7d29c2",
+     "row_start": 3200,
+     "row_stop": 3300
+    },
+    {
+     "name": "33",
+     "count": 100,
+     "color": "#cc1e8c",
+     "row_start": 3300,
+     "row_stop": 3400
+    },
+    {
+     "name": "34",
+     "count": 100,
+     "color": "#b74d34",
+     "row_start": 3400,
+     "row_stop": 3500
+    },
+    {
+     "name": "35",
+     "count": 100,
+     "color": "#d4d63d",
+     "row_start": 3500,
+     "row_stop": 3600
+    },
+    {
+     "name": "36",
+     "count": 100,
+     "color": "#4fe133",
+     "row_start": 3600,
+     "row_stop": 3700
+    },
+    {
+     "name": "37",
+     "count": 100,
+     "color": "#48cb9e",
+     "row_start": 3700,
+     "row_stop": 3800
+    },
+    {
+     "name": "38",
+     "count": 100,
+     "color": "#3d8dd6",
+     "row_start": 3800,
+     "row_stop": 3900
+    },
+    {
+     "name": "39",
+     "count": 100,
+     "color": "#6733e1",
+     "row_start": 3900,
+     "row_stop": 4000
+    },
+    {
+     "name": "40",
+     "count": 100,
+     "color": "#cb48bb",
+     "row_start": 4000,
+     "row_stop": 4100
+    },
+    {
+     "name": "41",
+     "count": 100,
+     "color": "#d63d46",
+     "row_start": 4100,
+     "row_stop": 4200
+    },
+    {
+     "name": "42",
+     "count": 100,
+     "color": "#cca41e",
+     "row_start": 4200,
+     "row_stop": 4300
+    },
+    {
+     "name": "43",
+     "count": 100,
+     "color": "#69b734",
+     "row_start": 4300,
+     "row_stop": 4400
+    },
+    {
+     "name": "44",
+     "count": 100,
+     "color": "#29c268",
+     "row_start": 4400,
+     "row_stop": 4500
+    },
+    {
+     "name": "45",
+     "count": 100,
+     "color": "#1ea3cc",
+     "row_start": 4500,
+     "row_stop": 4600
+    },
+    {
+     "name": "46",
+     "count": 100,
+     "color": "#3b34b7",
+     "row_start": 4600,
+     "row_stop": 4700
+    },
+    {
+     "name": "47",
+     "count": 100,
+     "color": "#af29c2",
+     "row_start": 4700,
+     "row_stop": 4800
+    },
+    {
+     "name": "48",
+     "count": 100,
+     "color": "#cc1e53",
+     "row_start": 4800,
+     "row_stop": 4900
+    },
+    {
+     "name": "49",
+     "count": 100,
+     "color": "#cb8d48",
+     "row_start": 4900,
+     "row_stop": 5000
+    }
+   ],
+   "order_file": "order_class.bin",
+   "value_file": "values_class.bin"
+  }
+ ],
+ "limits": {
+  "participation": 0.08669731020927429,
+  "up": 16.186758041381836,
+  "coeff": 132.1029510498047,
+  "share": 0.8777723047209902
+ },
+ "files": {
+  "order": {
+   "file": "order_<scheme>.bin",
+   "dtype": "uint32",
+   "shape": [
+    5000
+   ],
+   "note": "heatmap row -> point index, one per colour scheme"
+  },
+  "values": {
+   "file": "values_<scheme>.bin",
+   "dtype": "uint16 (categorical) or float32 (continuous)",
+   "shape": [
+    5000
+   ],
+   "note": "the coloured quantity, in point order"
+  },
+  "eigenvalues": {
+   "file": "eigenvalues.bin",
+   "dtype": "float32",
+   "shape": [
+    4999
+   ]
+  },
+  "absU": {
+   "file": "absU.bin",
+   "dtype": "float32",
+   "shape": [
+    5000,
+    128
+   ],
+   "note": "point order; permute through a scheme's order_*.bin"
+  },
+  "snapshots": {
+   "file": "snapshots.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    5000,
+    2
+   ]
+  },
+  "response": {
+   "file": "response.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    4999
+   ]
+  },
+  "coeff": {
+   "file": "coeff.bin",
+   "dtype": "float32",
+   "shape": [
+    10,
+    128,
+    2
+   ]
+  }
+ }
+}
