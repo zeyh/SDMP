@@ -83,7 +83,7 @@ body {
 
 .progression { margin-top: 20px; }
 
-.progression h2 {
+.progression h2, .viewer .top h2 {
   font-size: 17px;
 }
 
@@ -143,11 +143,6 @@ body {
   gap: 8px 16px;
   margin-bottom: 9px;
   padding: 5px 9px;
-}
-
-.viewer .top h2 {
-  font-size: 15px;
-  line-height: 1.2;
 }
 
 .viewer .top .field {
