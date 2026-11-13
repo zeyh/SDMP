@@ -618,10 +618,6 @@ function drawSnapshot() {
   if (state.pinned >= 0) ring(state.pinned, INK, 2);
   if (state.hover >= 0 && state.hover !== state.pinned) ring(state.hover, ACCENT, 1.6);
 
-  ctx.strokeStyle = BORDER;
-  ctx.lineWidth = 1;
-  ctx.strokeRect(rect.x - 0.5, rect.y - 0.5, rect.w + 1, rect.h + 1);
-
   var sm = stageMeta();
   label(ctx, 'K = ' + sm.k.toLocaleString(),
     rect.x + 9, rect.y + 17, { size: 10.5, mono: true, color: SUBINK });
@@ -807,7 +803,7 @@ function drawResponsePanel(ctx, W, H) {
   ctx.strokeRect(rect.x - 0.8, rect.y + cur / T * rect.h - 0.8, rect.w + 1.6, rect.h / T + 1.6);
   ctx.restore();
 
-  colorbar(ctx, W - R + 16, rect.y, 11, rect.h, lut, norm, 'energy share πₛ',
+  colorbar(ctx, W - R + 16, rect.y, 11, rect.h, lut, norm, '% of total energy',
     function (v) { return fmtPct(v); });
 
   /* The selected stage's share as a curve, on the same mode axis. */
@@ -848,7 +844,7 @@ function drawResponsePanel(ctx, W, H) {
     ctx.stroke();
     ctx.restore();
     drawModeAxis(ctx, crect, M, 'mode s →');
-    label(ctx, 'πₛ at K = ' + meta.stages[cur].k.toLocaleString(),
+    label(ctx, 'Energy distribution at K = ' + meta.stages[cur].k.toLocaleString(),
       crect.x + 8, crect.y + 13, { size: 10, mono: true, color: SUBINK });
     panelBox = { kind: 'response', rect: rect, cols: M, rows: T, norm: norm, curve: crect };
   } else {
@@ -938,7 +934,7 @@ function drawCoeffPanel(ctx, W, H) {
   label(ctx, 'pₛ,ₓ', brect.x + 9, brect.y + 13, { size: 10, mono: true, color: PX_COLOR, weight: '700' });
   label(ctx, 'pₛ,ᵧ', brect.x + 48, brect.y + 13, { size: 10, mono: true, color: PY_COLOR, weight: '700' });
   label(ctx, 'K = ' + meta.stages[cur].k.toLocaleString() +
-    (clipped ? '  ·  ' + clipped + ' mode' + (clipped > 1 ? 's' : '') + ' clipped' : ''),
+    (clipped ? ', ' + clipped + ' mode' + (clipped > 1 ? 's' : '') + ' clipped' : ''),
     brect.x + brect.w - 8, brect.y + 13, { align: 'right', size: 9.5, mono: true, color: FAINT });
 
   drawModeAxis(ctx, brect, M, 'mode s →');
@@ -990,13 +986,13 @@ function drawPointPanel() {
     return 's=' + (e[0] + 1) + ' (' + fmt(e[1], 2) + ')';
   }).join(', ');
 
-  el('point-note').textContent = '— at K = ' + meta.stages[cur].k.toLocaleString();
+  el('point-note').textContent = 'at K = ' + meta.stages[cur].k.toLocaleString();
   head.innerHTML =
     '<span class="who"><span class="swatch" style="background:' +
     scheme.colorOf(point) + '"></span>' +
-    escapeHTML(scheme.label + ' · ' + scheme.textOf(point)) + '</span>' +
-    '<span class="meta">point ' + point + ' · y = (' +
-    fmt(snapshot[2 * point], 3) + ', ' + fmt(snapshot[2 * point + 1], 3) + ') · row ' + row + '</span>' +
+    escapeHTML(scheme.label + ' ' + scheme.textOf(point)) + '</span>' +
+    '<span class="meta">point ' + point + ', y = (' +
+    fmt(snapshot[2 * point], 3) + ', ' + fmt(snapshot[2 * point + 1], 3) + '), row ' + row + '</span>' +
     '<span class="meta">strongest modes: ' + escapeHTML(topText) + '</span>' +
     (point === state.pinned ? '<span class="pinned" title="Click the background to release">pinned</span>' : '');
 
@@ -1086,7 +1082,7 @@ function renderPlayer() {
   if (!state.tween || !state.playing) slider.value = String(cur);
   el('stage-readout').innerHTML =
     'K <b>' + sm.k.toLocaleString() + '</b>/' + meta.n_modes_total.toLocaleString() +
-    '  ·  <b>' + sm.stage + '</b>/' + meta.n_stages;
+    ', stage <b>' + sm.stage + '</b>/' + meta.n_stages;
 
   var ticks = el('stage-ticks');
   if (ticks.childElementCount !== meta.n_stages) {
@@ -1104,7 +1100,7 @@ function renderPlayer() {
   }
   el('play').innerHTML = state.playing ? '&#9646;&#9646;' : '&#9654;';
   el('play').setAttribute('aria-label', state.playing ? 'Pause' : 'Play');
-  el('snap-note').textContent = '— ' + ds.meta.n_points.toLocaleString() + ' points';
+  el('snap-note').textContent = ds.meta.n_points.toLocaleString() + ' points';
 }
 
 function renderTabTools() {
@@ -1417,7 +1413,7 @@ function wirePanel() {
         ? clamp(Math.floor((e.offsetY - rect.y) / rect.h * box.rows), 0, box.rows - 1)
         : stageIndex();
       lines.push('K = ' + ds.meta.stages[st].k.toLocaleString());
-      lines.push('πₛ = ' + fmtPct(shareRow(st)[mode]));
+      lines.push(fmtPct(shareRow(st)[mode]) + ' of total energy');
       lines.push('‖pₛ‖ = ' + fmt(responseRow(st)[mode], 3));
     } else {
       var P = coeffRow(stageIndex());
@@ -1614,7 +1610,7 @@ function boot() {
   }).catch(function (err) {
     el('status').className = 'status error';
     el('status').textContent = 'Could not load data/index.json: ' + err.message +
-      '  —  the page needs to be served over HTTP (GitHub Pages, or `python -m http.server`).';
+      '. Serve the page over HTTP using GitHub Pages or `python -m http.server`.';
     console.error(err);
   });
 }

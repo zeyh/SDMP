@@ -45,7 +45,7 @@
             <a href="https://www.nature.com/articles/ncomms14049">Zheng et al.</a>
             <button type="button" aria-controls="zheng-animation"
                     data-gif="assets/figures/zheng-interpolated.gif">Play</button>
-            <span class="dataset-details">50,000 of 1,306,127 cells · 50 PCs</span>
+            <span class="dataset-details">50,000 of 1,306,127 cells, 50 PCs</span>
           </figcaption>
         </figure>
         <figure class="animation">
@@ -55,7 +55,7 @@
             <span>Swiss Roll</span>
             <button type="button" aria-controls="swiss-roll-animation"
                     data-gif="assets/figures/swiss-roll-interpolated.gif">Play</button>
-            <span class="dataset-details">1,000 points · 3D input</span>
+            <span class="dataset-details">1,000 points, 3D input</span>
           </figcaption>
         </figure>
         <figure class="animation">
@@ -65,27 +65,7 @@
             <span>Mammoth</span>
             <button type="button" aria-controls="mammoth-animation"
                     data-gif="assets/figures/mammoth-interpolated.gif">Play</button>
-            <span class="dataset-details">10,000 points · 3D input</span>
-          </figcaption>
-        </figure>
-        <figure class="animation">
-          <img id="fashion-mnist-animation" src="assets/figures/fashion-mnist-interpolated.png"
-               width="500" height="500" loading="lazy" alt="Fashion-MNIST">
-          <figcaption>
-            <span>Fashion-MNIST</span>
-            <button type="button" aria-controls="fashion-mnist-animation"
-                    data-gif="assets/figures/fashion-mnist-interpolated.gif">Play</button>
-            <span class="dataset-details">70,000 images · 784D input</span>
-          </figcaption>
-        </figure>
-        <figure class="animation">
-          <img id="mnist-animation" src="assets/figures/mnist-interpolated.png"
-               width="500" height="500" loading="lazy" alt="MNIST">
-          <figcaption>
-            <span>MNIST</span>
-            <button type="button" aria-controls="mnist-animation"
-                    data-gif="assets/figures/mnist-interpolated.gif">Play</button>
-            <span class="dataset-details">70,000 images · 784D input</span>
+            <span class="dataset-details">10,000 points, 3D input</span>
           </figcaption>
         </figure>
         <figure class="animation">
@@ -95,7 +75,27 @@
             <span>COIL-20</span>
             <button type="button" aria-controls="coil20-animation"
                     data-gif="assets/figures/coil20-interpolated.gif">Play</button>
-            <span class="dataset-details">1,440 images · 1,024D input</span>
+            <span class="dataset-details">1,440 images, 1,024D input</span>
+          </figcaption>
+        </figure>
+        <figure class="animation">
+          <img id="fashion-mnist-animation" src="assets/figures/fashion-mnist-interpolated.png"
+               width="500" height="500" loading="lazy" alt="Fashion-MNIST">
+          <figcaption>
+            <span>Fashion-MNIST</span>
+            <button type="button" aria-controls="fashion-mnist-animation"
+                    data-gif="assets/figures/fashion-mnist-interpolated.gif">Play</button>
+            <span class="dataset-details">70,000 images, 784D input</span>
+          </figcaption>
+        </figure>
+        <figure class="animation">
+          <img id="mnist-animation" src="assets/figures/mnist-interpolated.png"
+               width="500" height="500" loading="lazy" alt="MNIST">
+          <figcaption>
+            <span>MNIST</span>
+            <button type="button" aria-controls="mnist-animation"
+                    data-gif="assets/figures/mnist-interpolated.gif">Play</button>
+            <span class="dataset-details">70,000 images, 784D input</span>
           </figcaption>
         </figure>
       </div>
@@ -155,8 +155,8 @@
           <section class="card" aria-label="Per-mode heatmaps">
             <div class="tabs" role="tablist">
               <button role="tab" id="tab-up" aria-selected="true" aria-controls="panel-host">U&middot;P</button>
-              <button role="tab" id="tab-response" aria-selected="false" aria-controls="panel-host">Global response</button>
               <button role="tab" id="tab-coeff" aria-selected="false" aria-controls="panel-host">P</button>
+              <button role="tab" id="tab-response" aria-selected="false" aria-controls="panel-host">Energy distribution</button>
             </div>
             <div class="tab-tools" id="tab-tools"></div>
             <div class="canvas-host" id="panel-host">
