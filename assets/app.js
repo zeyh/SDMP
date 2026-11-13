@@ -1595,7 +1595,8 @@ function boot() {
     var options = readViewerState();
     var keys = idx.datasets.map(function (d) { return d.key; });
     if (options && keys.indexOf(options.key) < 0) options = null;
-    var start = options ? options.key : keys[0];
+    var defaultKey = keys.includes('digits') ? 'digits' : keys[0];
+    var start = options ? options.key : defaultKey;
     wireControls();
     wireSnapshot();
     wirePanel();
