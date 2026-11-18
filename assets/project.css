@@ -87,9 +87,15 @@ body {
   font-size: 17px;
 }
 
+/* How many animations sit in a row, and so how big each one is.  The sources
+   are 500 px square, and the shell's measure is ~1136 px, so three columns put
+   a panel at ~365 px -- large enough to read the structure, still under its
+   own resolution.  Six datasets divide evenly by 6, 3 and 2, so those are the
+   counts that leave no ragged last row. */
 .animation-grid {
+  --animation-columns: 3;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--animation-columns), minmax(0, 1fr));
 }
 
 .animation {
@@ -156,11 +162,9 @@ body {
 .viewer .field select { max-width: 100%; min-width: 0; }
 .viewer .track { min-width: min(240px, 100%); }
 
-@media (max-width: 1000px) {
-  .animation-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
 @media (max-width: 800px) {
+  .animation-grid { --animation-columns: 2; }
+
   .paper-layout {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "contents" "paper";
@@ -185,6 +189,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .animation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .animation-grid { --animation-columns: 1; }
   .viewer .field { min-width: 0; }
 }

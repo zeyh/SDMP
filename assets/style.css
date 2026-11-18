@@ -281,6 +281,49 @@ input[type="range"] {
 /* --- point inspector ---------------------------------------------------- */
 .inspector { margin-top: 9px; }
 
+/* The input image to the left of the spectrum, the panels to the right of it.
+   Flex rather than a grid so a run with no images collapses to one column on
+   its own, with no second rule to keep in step. */
+.inspector-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.inspector-main { flex: 1 1 auto; min-width: 0; }
+
+/* A specimen chip, deliberately unlike the panels beside it: square, framed,
+   on its own dark ground, so it is never read as one more heatmap.  Its size
+   is the one knob below -- app.js reads it back off the element rather than
+   carrying a second copy, so the canvas is drawn at whatever this says. */
+.specimen {
+  --specimen-size: 88px;
+  flex: 0 0 auto;
+  width: var(--specimen-size);
+  margin: 0;
+}
+
+.specimen canvas {
+  display: block;
+  width: var(--specimen-size);
+  height: var(--specimen-size);
+  background: #10171a;
+  border: 1px solid var(--border-strong);
+  image-rendering: pixelated;
+}
+
+.specimen figcaption {
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--faint);
+  text-align: center;
+}
+
+@media (max-width: 620px) {
+  .inspector-body { flex-direction: column; }
+}
+
 .inspector .head {
   display: flex;
   align-items: baseline;
@@ -322,10 +365,29 @@ input[type="range"] {
   opacity: 0;
   transition: opacity 90ms linear;
   z-index: 5;
-  max-width: 260px;
+  max-width: 320px;
 }
 
 .readout.show { opacity: 1; }
+
+/* With a thumbnail the tooltip becomes image + numbers, so the pre-wrapped
+   text moves into its own box and the padding comes off the image edge. */
+.readout .rwrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.readout .rwrap .chip {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  background: #10171a;
+  border: 1px solid var(--border);
+  image-rendering: pixelated;
+}
+
+.readout .rtext { white-space: pre; }
 
 .status {
   padding: 30px 0;

@@ -125,6 +125,18 @@
    "up_limit": 3.218972682952881
   }
  ],
+ "thumbs": {
+  "file": "thumbs.png",
+  "side": 28,
+  "cols": 71,
+  "rows": 71,
+  "count": 5000,
+  "source": "fashion_mnist_full",
+  "ink": "light",
+  "vmin": 0.0,
+  "vmax": 1.0,
+  "note": "point n is the tile at (n % cols, n // cols); one 8-bit grayscale exposure over the whole run, bright ink on black"
+ },
  "schemes": [
   {
    "key": "class",
@@ -271,6 +283,15 @@
     128,
     2
    ]
+  },
+  "thumbs": {
+   "file": "thumbs.png",
+   "dtype": "uint8 PNG (L)",
+   "shape": [
+    1988,
+    1988
+   ],
+   "note": "point n is the tile at (n % cols, n // cols); one 8-bit grayscale exposure over the whole run, bright ink on black"
   }
  }
 }

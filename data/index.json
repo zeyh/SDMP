@@ -535,7 +535,8 @@
      "kind": "categorical"
     }
    ],
-   "n_classes": 10
+   "n_classes": 10,
+   "has_thumbs": true
   },
   {
    "key": "fashion_mnist",
@@ -552,7 +553,8 @@
      "kind": "categorical"
     }
    ],
-   "n_classes": 10
+   "n_classes": 10,
+   "has_thumbs": true
   },
   {
    "key": "celegans",
@@ -574,7 +576,8 @@
      "kind": "continuous"
     }
    ],
-   "n_classes": 28
+   "n_classes": 28,
+   "has_thumbs": false
   },
   {
    "key": "tree",
@@ -591,7 +594,8 @@
      "kind": "categorical"
     }
    ],
-   "n_classes": 50
+   "n_classes": 50,
+   "has_thumbs": false
   },
   {
    "key": "loop",
@@ -608,7 +612,8 @@
      "kind": "categorical"
     }
    ],
-   "n_classes": 8
+   "n_classes": 8,
+   "has_thumbs": false
   },
   {
    "key": "digits",
@@ -625,7 +630,8 @@
      "kind": "categorical"
     }
    ],
-   "n_classes": 10
+   "n_classes": 10,
+   "has_thumbs": true
   }
  ]
 }

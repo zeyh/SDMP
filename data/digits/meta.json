@@ -125,6 +125,18 @@
    "up_limit": 2.582033634185791
   }
  ],
+ "thumbs": {
+  "file": "thumbs.png",
+  "side": 8,
+  "cols": 42,
+  "rows": 43,
+  "count": 1797,
+  "source": "digits",
+  "ink": "light",
+  "vmin": 0.0,
+  "vmax": 16.0,
+  "note": "point n is the tile at (n % cols, n // cols); one 8-bit grayscale exposure over the whole run, bright ink on black"
+ },
  "schemes": [
   {
    "key": "class",
@@ -271,6 +283,15 @@
     128,
     2
    ]
+  },
+  "thumbs": {
+   "file": "thumbs.png",
+   "dtype": "uint8 PNG (L)",
+   "shape": [
+    344,
+    336
+   ],
+   "note": "point n is the tile at (n % cols, n // cols); one 8-bit grayscale exposure over the whole run, bright ink on black"
   }
  }
 }

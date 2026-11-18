@@ -30,6 +30,17 @@ function fetchBin(url, Ctor) {
   }).then(function (buf) { return new Ctor(buf); });
 }
 
+/* Resolves to null rather than rejecting: a run whose sprite sheet is missing
+   loses its thumbnails, not its panels. */
+function fetchImage(url) {
+  return new Promise(function (resolve) {
+    var img = new Image();
+    img.onload = function () { resolve(img); };
+    img.onerror = function () { resolve(null); };
+    img.src = url;
+  });
+}
+
 function clamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
 
 /* Significant-digit formatting that keeps integers intact: toPrecision turns
@@ -183,6 +194,50 @@ function blitHeatmap(ctx, rect, cols, rows, fill, smooth) {
   ctx.strokeStyle = BORDER;
   ctx.lineWidth = 1;
   ctx.strokeRect(rect.x - 0.5, rect.y - 0.5, rect.w + 1, rect.h + 1);
+}
+
+/* ------------------------------------------------------------- specimens */
+/* An image run exports one sprite sheet, data/<run>/thumbs.png: point n is the
+   tile at (n % cols, n // cols).  Showing a point's input image is therefore a
+   crop of an image already in memory -- one drawImage, no request per point.
+   The tile keeps the raw exposure, bright ink on black, so it is backed by the
+   dark chip rather than inverted: these pixels are the features the method was
+   given, and flipping them for the page would be a second convention. */
+var THUMB_BG = '#10171a';
+
+function hasThumbs() {
+  return !!(ds && ds.thumbs && ds.thumbs.img);
+}
+
+/* Draws point `point` into `canvas` at `size` css px. Nearest-neighbour on
+   purpose: a 28 px tile blown up to 112 should read as pixels, not as a blur
+   that invents strokes the input does not have. */
+function drawThumb(canvas, point, size) {
+  var ctx = setupCanvas(canvas, size, size);
+  ctx.fillStyle = THUMB_BG;
+  ctx.fillRect(0, 0, size, size);
+  if (!hasThumbs() || point < 0 || point >= ds.thumbs.spec.count) return false;
+  var spec = ds.thumbs.spec, side = spec.side;
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(ds.thumbs.img,
+    (point % spec.cols) * side, Math.floor(point / spec.cols) * side, side, side,
+    0, 0, size, size);
+  return true;
+}
+
+/* The tile's size lives in --specimen-size in the stylesheet, where the rest
+   of the page's measurements are; this reads it back so there is no second
+   number here to drift out of step with it. */
+function specimenSize(node) {
+  var raw = getComputedStyle(node).getPropertyValue('--specimen-size');
+  var size = parseFloat(raw);
+  return size > 0 ? size : 88;
+}
+
+function thumbCaption() {
+  if (!hasThumbs()) return '';
+  var side = ds.thumbs.spec.side;
+  return side + ' \u00d7 ' + side + ' input';
 }
 
 /* Mode-axis ticks: whichever of 1/2/5/10/... keeps labels ~36 px apart. */
@@ -363,6 +418,9 @@ function loadDataset(key) {
       jobs.push(fetchBin(base + spec.value_file,
         spec.kind === 'continuous' ? Float32Array : Uint16Array));
     });
+    /* Last job, so the scheme indices above stay where they are. */
+    var thumbSpec = meta.thumbs || null;
+    jobs.push(thumbSpec ? fetchImage(base + thumbSpec.file) : Promise.resolve(null));
     return Promise.all(jobs).then(function (parts) {
       var meta2 = meta;
       var out = {
@@ -373,6 +431,9 @@ function loadDataset(key) {
           return buildScheme(spec, parts[5 + 2 * i], parts[6 + 2 * i], meta2.n_points);
         })
       };
+
+      var sheet = parts[5 + 2 * specs.length] || null;
+      out.thumbs = (thumbSpec && sheet) ? { spec: thumbSpec, img: sheet } : null;
 
       /* Parseval share per stage, normalized over the full exported spectrum. */
       var T = meta2.n_stages, S = meta2.n_modes_total;
@@ -960,24 +1021,36 @@ function activePoint() {
 
 function drawPointPanel() {
   var point = activePoint();
-  var head = el('point-head'), host = el('point-host'), empty = el('point-empty');
+  var head = el('point-head'), body = el('point-body'), empty = el('point-empty');
+  var specimen = el('point-specimen');
   if (point < 0) {
-    head.hidden = true;
-    host.hidden = true;
+    body.hidden = true;
     empty.hidden = false;
     el('point-note').textContent = '';
     pointBox = null;
     return;
   }
   empty.hidden = true;
-  head.hidden = false;
-  host.hidden = false;
+  body.hidden = false;
 
   var meta = ds.meta, M = state.modes, stride = meta.n_modes;
   var scheme = sch();
   var cur = stageIndex(), row = scheme.rowOf[point];
   var resp = responseRow(cur);
   var snapshot = snapshotRow(cur);
+
+  /* The input image sits beside the strips rather than inside them: it is the
+     one thing on this card that is not a function of the spectrum, and the
+     mode axis would have to lie about it to fit it in. */
+  if (hasThumbs()) {
+    specimen.hidden = false;
+    drawThumb(el('point-thumb'), point, specimenSize(specimen));
+    el('point-thumb').setAttribute('aria-label',
+      'Input image of point ' + point + ', ' + scheme.label + ' ' + scheme.textOf(point));
+    el('point-specimen-note').textContent = thumbCaption();
+  } else {
+    specimen.hidden = true;
+  }
 
   var top = [];
   for (var s = 0; s < M; s++) top.push([s, ds.absU[point * stride + s] * resp[s]]);
@@ -1246,8 +1319,47 @@ function render(updateUrl) {
 }
 
 /* --------------------------------------------------------------- readouts */
-function showReadout(node, host, x, y, text) {
-  node.textContent = text;
+/* The chip is built once per readout node and reused: mousemove fires often,
+   and a fresh canvas each time would allocate a backing store per frame. */
+var THUMB_CHIP = 44;
+
+function readoutParts(node) {
+  if (!node._parts) {
+    var wrap = document.createElement('div');
+    wrap.className = 'rwrap';
+    var chip = document.createElement('canvas');
+    chip.className = 'chip';
+    chip.setAttribute('role', 'img');
+    chip.setAttribute('aria-label', 'Input image of the hovered point');
+    var text = document.createElement('div');
+    text.className = 'rtext';
+    wrap.appendChild(chip);
+    wrap.appendChild(text);
+    node._parts = { wrap: wrap, chip: chip, text: text, point: -1, key: null };
+  }
+  return node._parts;
+}
+
+/* `point`, when given and when the run has a sprite sheet, puts that point's
+   input image in the tooltip beside the numbers -- the reading is "this mode
+   carries this much of *this* digit", and the digit should not have to be
+   looked up elsewhere on the page. */
+function showReadout(node, host, x, y, text, point) {
+  if (hasThumbs() && point !== undefined && point >= 0) {
+    var parts = readoutParts(node);
+    if (parts.wrap.parentNode !== node) {
+      node.textContent = '';
+      node.appendChild(parts.wrap);
+    }
+    parts.text.textContent = text;
+    if (parts.point !== point || parts.key !== state.key) {
+      drawThumb(parts.chip, point, THUMB_CHIP);
+      parts.point = point;
+      parts.key = state.key;
+    }
+  } else {
+    node.textContent = text;
+  }
   node.classList.add('show');
   var w = node.offsetWidth, h = node.offsetHeight;
   var left = x + 14, topPos = y - h - 10;
@@ -1355,7 +1467,8 @@ function wireSnapshot() {
       var snapshot = snapshotRow(stageIndex());
       showReadout(readout, host, e.offsetX, e.offsetY,
         sch().textOf(found) + '\npoint ' + found +
-        '\n(' + fmt(snapshot[2 * found], 3) + ', ' + fmt(snapshot[2 * found + 1], 3) + ')');
+        '\n(' + fmt(snapshot[2 * found], 3) + ', ' + fmt(snapshot[2 * found + 1], 3) + ')',
+        found);
     } else {
       hideReadout(readout);
     }
@@ -1397,10 +1510,12 @@ function wirePanel() {
     var mode = clamp(Math.floor((e.offsetX - ref.x) / ref.w * box.cols), 0, box.cols - 1);
     var lam = ds.eig[mode];
     var lines = ['mode s = ' + (mode + 1), 'λ = ' + fmt(lam, 4)];
+    var rowPoint = -1;
 
     if (box.kind === 'local') {
       var row = clamp(Math.floor((e.offsetY - rect.y) / rect.h * box.rows), 0, box.rows - 1);
       var point = sch().order[row];
+      rowPoint = point;
       var stride = ds.meta.n_modes;
       var u = ds.absU[point * stride + mode];
       var r = responseRow(stageIndex())[mode];
@@ -1421,7 +1536,7 @@ function wirePanel() {
       lines.push('pₛ,ᵧ = ' + fmt(P[2 * mode + 1], 3));
       lines.push('‖pₛ‖ = ' + fmt(responseRow(stageIndex())[mode], 3));
     }
-    showReadout(readout, host, e.offsetX, e.offsetY, lines.join('\n'));
+    showReadout(readout, host, e.offsetX, e.offsetY, lines.join('\n'), rowPoint);
   });
 
   canvas.addEventListener('mouseleave', function () { hideReadout(readout); });
@@ -1462,7 +1577,7 @@ function wirePointPanel() {
     showReadout(readout, host, e.offsetX, e.offsetY,
       'mode s = ' + (mode + 1) + '\nλ = ' + fmt(ds.eig[mode], 4) +
       '\n|u| = ' + fmt(u, 3) + '\n‖p‖ = ' + fmt(r, 3) +
-      '\n‖u p‖ = ' + fmt(u * r, 3));
+      '\n‖u p‖ = ' + fmt(u * r, 3), b.point);
   });
   canvas.addEventListener('mouseleave', function () { hideReadout(readout); });
 }

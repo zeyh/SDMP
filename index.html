@@ -168,10 +168,18 @@
 
         <section class="card inspector" aria-label="Hovered point">
           <h3>Point spectrum <span class="note" id="point-note"></span></h3>
-          <div class="head" id="point-head" hidden></div>
-          <div class="canvas-host" id="point-host" hidden>
-            <canvas id="point" width="1000" height="300"></canvas>
-            <div class="readout" id="point-readout"></div>
+          <div class="inspector-body" id="point-body" hidden>
+            <figure class="specimen" id="point-specimen" hidden>
+              <canvas id="point-thumb" width="112" height="112" role="img" aria-label="Input image of the active point"></canvas>
+              <figcaption id="point-specimen-note"></figcaption>
+            </figure>
+            <div class="inspector-main">
+              <div class="head" id="point-head"></div>
+              <div class="canvas-host" id="point-host">
+                <canvas id="point" width="1000" height="300"></canvas>
+                <div class="readout" id="point-readout"></div>
+              </div>
+            </div>
           </div>
           <div id="point-empty">Hover over a point in the scatterplot to see its spectrum.</div>
         </section>
