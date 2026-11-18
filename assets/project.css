@@ -12,8 +12,8 @@ body {
 }
 
 .site-shell {
-  max-width: 1264px;
-  padding: clamp(36px, 5vw, 64px) clamp(20px, 5vw, 64px) 64px;
+  max-width: 1180px;
+  padding: clamp(36px, 5vw, 64px) clamp(24px, 8vw, 128px) 64px;
   margin-inline: auto;
 }
 
@@ -48,6 +48,15 @@ body {
 }
 
 .abstract p { margin: 0 0 9px; }
+
+.abstract ul {
+  margin: 0 0 9px;
+  padding-left: 20px;
+  display: grid;
+  gap: 7px;
+}
+
+.abstract li::marker { color: var(--paper-muted); }
 
 .contents {
   grid-area: contents;
@@ -94,8 +103,18 @@ body {
    counts that leave no ragged last row. */
 .animation-grid {
   --animation-columns: 3;
+  /* Each GIF carries a 6% white margin around its drawn frame, which is what
+     actually separates the panels.  Letting the image spill --shot-bleed past
+     its cell pulls the frames to 3.8%-96.2% of the cell, so the visible gap
+     drops from 12% of a panel to 7.6%.  Only the white margins overlap --
+     nothing is drawn outside 6%-94% of a GIF -- so the spill never shows.
+     Raising the bleed tightens the gap further; 6% would close it entirely. */
+  --shot-bleed: 2.5%;
+  --frame-inset: 3.8%;
   display: grid;
   grid-template-columns: repeat(var(--animation-columns), minmax(0, 1fr));
+  column-gap: 0;
+  row-gap: 16px;
 }
 
 .animation {
@@ -110,7 +129,9 @@ body {
   aspect-ratio: 1;
   height: auto;
   object-fit: contain;
-  padding: 7px;
+  padding: 0;
+  width: calc(100% + 2 * var(--shot-bleed));
+  margin-inline: calc(-1 * var(--shot-bleed));
 }
 
 .animation figcaption {
@@ -121,8 +142,9 @@ body {
   flex: 1;
   flex-wrap: wrap;
   gap: 3px 8px;
-  border-block-end: 1px solid var(--paper-rule);
-  padding: 5px 9px;
+  /* Aligned to the drawn frame, which the bleed above puts at --frame-inset:
+     the label starts under its left edge, the button ends under its right. */
+  padding: 5px var(--frame-inset);
   font-size: 13px;
 }
 
