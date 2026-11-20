@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>How SDMP explains a layout</title>
+<meta name="description" content="An interactive reading of Y = U · P, the equation behind SDMP's explanations.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@400;700&amp;display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/project.css">
+<link rel="stylesheet" href="../assets/explain.css">
+</head>
+<body>
+<div class="site-shell">
+<main class="site-main explainer">
+
+  <p class="crumb"><a href="../">&larr; SDMP</a> <span>draft</span></p>
+
+  <h1>How SDMP explains a layout</h1>
+  <p class="lede">
+    Every SDMP embedding is one matrix product, <span class="eq">Y = U &middot; P</span>,
+    and everything on the <a href="../#viewer">explanation page</a> reads
+    one of its three parts. Here it gets built up one factor at a time, on a
+    dataset small enough to read cell by cell.
+  </p>
+
+  <div class="toy-switch" id="toy-switch" role="group" aria-label="Example dataset"></div>
+  <p class="sub" id="toy-note"></p>
+
+  <!-- 0 ------------------------------------------------------------------ -->
+  <section class="step" id="step-eq">
+    <h2><span class="num">1.</span> The three parts</h2>
+    <p class="caption">
+      The blocks are drawn to shape. <span class="sym">U</span> is as tall as the
+      dataset and as wide as the modes kept, while <span class="sym">P</span> holds
+      two numbers per mode, which are the only thing optimization changes.
+    </p>
+    <div class="eq-row">
+      <svg id="eq-svg" viewBox="0 0 560 210" role="img" aria-label="Y equals U times P"></svg>
+      <div class="gloss" id="eq-gloss"></div>
+    </div>
+  </section>
+
+  <!-- 1 ------------------------------------------------------------------ -->
+  <section class="step" id="step-u">
+    <h2><span class="num">2.</span> <span class="sym">U</span>, what the graph looks like at each scale</h2>
+    <p class="caption">
+      A column of <span class="sym">U</span> is a picture over the graph, rather
+      than one number per point.
+    </p>
+    <div class="two-up">
+      <div class="pane">
+        <canvas id="graph" width="420" height="360"></canvas>
+        <p class="sub" id="graph-sub"></p>
+      </div>
+      <div class="pane">
+        <canvas id="umat" width="420" height="360"></canvas>
+        <p class="sub" id="umat-sub"></p>
+      </div>
+    </div>
+    <p class="mode-note" id="mode-note"></p>
+  </section>
+
+  <!-- 2 ------------------------------------------------------------------ -->
+  <section class="step" id="step-p">
+    <h2><span class="num">3.</span> <span class="sym">P</span>, how much of each scale the layout uses</h2>
+    <p class="caption">
+      Row <span class="sym">s</span> of <span class="sym">P</span> is two numbers,
+      so it works as a direction in the plane. It is the way mode
+      <span class="sym">s</span> pushes a point that has a positive value in that
+      mode. The arrows are drawn to their own scale.
+    </p>
+    <div class="two-up">
+      <div class="pane">
+        <canvas id="parrows" width="420" height="330"></canvas>
+        <p class="sub">Each arrow is one row of <span class="sym">P</span>.</p>
+      </div>
+      <div class="pane">
+        <canvas id="pbars" width="420" height="330"></canvas>
+        <p class="sub">Response magnitude per mode, called G2 in the paper.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 ------------------------------------------------------------------ -->
+  <section class="step" id="step-chain">
+    <h2><span class="num">4.</span> The product, one point at a time</h2>
+    <p class="caption">
+      A point's position is the sum of its eight displacements,
+      <span class="eq">y<sub>n</sub> = u<sub>n,1</sub>p<sub>1</sub> + &hellip; + u<sub>n,8</sub>p<sub>8</sub></span>.
+      Laid end to end from the origin, they land exactly on the point. Click to pin
+      one.
+    </p>
+    <div class="chain-tools">
+      <div class="seg" role="group" aria-label="Arrangement">
+        <button id="mode-chain" class="on">end to end</button>
+        <button id="mode-fan">all from origin</button>
+      </div>
+      <label class="cut">
+        modes kept
+        <input type="range" id="cutoff" min="1" max="8" step="1" value="8">
+        <output id="cutoff-out">8</output>
+      </label>
+      <button id="clear-pin" class="ghost" hidden>unpin</button>
+    </div>
+    <div class="two-up chain-up">
+      <div class="pane">
+        <canvas id="chain" width="520" height="430"></canvas>
+        <p class="sub" id="chain-sub"></p>
+      </div>
+      <div class="pane">
+        <canvas id="pointbars" width="420" height="430"></canvas>
+        <p class="sub">
+          L1 above and L2 below. Together they make one row of the
+          <span class="sym">U&middot;P</span> panel.
+        </p>
+      </div>
+    </div>
+    <p class="mode-note" id="chain-note"></p>
+  </section>
+
+  <!-- 4 ------------------------------------------------------------------ -->
+  <section class="step" id="step-caveat">
+    <h2><span class="num">5.</span> How to misread this</h2>
+    <ul class="caveats">
+      <li>
+        A large <span class="sym">|u<sub>n,s</sub>|</span> does not mean mode
+        <span class="sym">s</span> matters to the layout. It matters only against
+        <span class="sym">&#8214;p<sub>s</sub>&#8214;</span>. That is why the viewer
+        has both panels. <span class="sym">U</span> shows what the graph makes
+        available, and <span class="sym">U&middot;P</span> shows how much of it the
+        layout used.
+      </li>
+      <li>
+        A mode index is not a feature index. Only the subspace is determined, and
+        close eigenvalues mix neighbouring modes.
+        <span id="degen-note"></span>
+        Reading a band of modes is safer than reading a single column.
+      </li>
+      <li>
+        An eigenvector's sign is arbitrary. Only the product
+        <span class="sym">u<sub>n,s</sub>p<sub>s</sub></span> means anything, and the
+        signs you see here come from a convention rather than from the data.
+      </li>
+      <li>
+        Cutting the chain at <span class="sym">K</span> gives
+        <span class="sym">Y<sub>K</sub></span> in the sense of the reconstruction
+        error, meaning the final coefficients truncated. A run that stopped at
+        <span class="sym">K</span> modes would have landed somewhere else, since it
+        re-optimizes at every stage.
+      </li>
+    </ul>
+  </section>
+
+</main>
+</div>
+<script src="../assets/explain.js" data-toy="../data/explainer_toy.json"></script>
+</body>
+</html>
